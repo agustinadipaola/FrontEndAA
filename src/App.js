@@ -29,8 +29,8 @@ const USER_TYPES = {
     </div>
   ),
 };
-const CURRENT_USER_TYPE = USER_TYPES.NORMAL_USER;
-// const CURRENT_USER_TYPE = USER_TYPES.ADMIN_USER;
+// const CURRENT_USER_TYPE = USER_TYPES.NORMAL_USER;
+const CURRENT_USER_TYPE = USER_TYPES.ADMIN_USER;
 
 function App() {
   return (
