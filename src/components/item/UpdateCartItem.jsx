@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Button, Card } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 
 function UpdateCartItem(props) {
   const [itemName, setItemName] = useState(""); // Name of the item
@@ -36,15 +36,13 @@ function UpdateCartItem(props) {
   }
 
   return (
-    <Card
-      style={{ textAlign: "center" }}
-    >
-      <div style={{ height: "400px" }}>
-        <form>
-          <br></br>
-          <br></br>
+    <Form style={{backgroundColor:"#FEFEFA", width:400, border: '1px solid #000', fontFamily:"roboto",  paddingLeft: '2em' }}>
+      <h3           style={{ fontFamily: "roboto" }}
+>UPDATE YOUR ITEMS</h3>
+      
 
-          <strong>ITEM NAME: </strong>
+<div           style={{ fontFamily: "roboto, sans-serif" }}
+>ITEM NAME: </div>
           <input
             type="text"
             className="form-control"
@@ -53,7 +51,8 @@ function UpdateCartItem(props) {
             onChange={(e) => setItemName(e.target.value)}
           />
           <br />
-          <strong>PRICE: </strong>
+          <div           style={{ fontFamily: "roboto, sans-serif" }}
+>PRICE: </div>
           <input
             type="number"
             className="form-control"
@@ -65,7 +64,8 @@ function UpdateCartItem(props) {
             onChange={(e) => setItemPrice(e.target.value)}
           />
           <br />
-          <strong> QUANTITY:</strong>
+          <div           style={{ fontFamily: "roboto, sans-serif" }}
+> QUANTITY:</div>
           <input
             type="number"
             className="form-control"
@@ -88,15 +88,9 @@ function UpdateCartItem(props) {
           <br></br>
           <br></br>
           <div>
-            {/* <img
-            className="text-center"
-            style={{ marginLeft: "40px", width: "10%" }}
-            src={basket}
-          ></img> */}
+     
           </div>
-        </form>
-      </div>
-    </Card>
+    </Form>
   );
 }
 

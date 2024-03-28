@@ -6,7 +6,8 @@ function CreateItem() {
   return (
     <div>
       <FormCreateItem/>
-
+<br/>
+<br/>
       <DisplayStockItems />
     </div>
   );

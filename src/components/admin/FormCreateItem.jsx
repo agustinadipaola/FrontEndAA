@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Button, Form } from "react-bootstrap";
 
 
 function FormCreateItem() {
@@ -49,38 +50,44 @@ function FormCreateItem() {
       .catch((error) => console.error(error));
   };
 
-    return ( 
-<div>
-      <form onSubmit={handleSubmit}>
-        <h3>CREATE YOUR ITEMS</h3>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Item Name"
-          value={itemName}
-          onChange={(event) => setItemName(event.target.value)}
-        ></input>
+  return ( 
+    <Form style={{backgroundColor:"#FEFEFA", width:400, border: '1px solid #000',  fontFamily:"roboto",  paddingLeft: '2em' }}onSubmit={handleSubmit}>
+      <h3           style={{ fontFamily: "roboto, sans-serif" }}
+>CREATE YOUR ITEMS</h3>
+      <div           style={{ fontFamily: "roboto, sans-serif" }}
+>ITEM NAME: </div>
+      <input
+        type="text"
+        className="form-control"
+        value={itemName}
+        onChange={(e) => setItemName(e.target.value)}
+      />
+       <br />
+      <div           style={{ fontFamily: "roboto, sans-serif" }}
+>PRICE: </div>
+      <input
+        type="number"
+        className="form-control"
+        placeholder="£"
+        defaultValue="0.00"
+        min="0"
+        step="0.01"
+        value={itemPrice}
+        onChange={(e) => setItemPrice(e.target.value)}
+      />
+      <br />
+      <div           style={{ fontFamily: "roboto, sans-serif" }}
+> QUANTITY:</div>
+      <input
+        type="number"
+        className="form-control"
+        min="0"
+        value={itemQuantity}
+        onChange={(e) => setItemQuantity(e.target.value)}
+      />
         <br />
-        <input
-          type="number"
-          className="form-control"
-          defaultValue="0.00"
-          min="0"
-          step="0.01"
-          placeholder="Price in £"
-          value={itemPrice}
-          onChange={(event) => setItemPrice(event.target.value)}
-        ></input>
-        <br />
-        <input
-          type="number"
-          className="form-control"
-          min="0"
-          placeholder="Please enter quantity"
-          value={itemQuantity}
-          onChange={(event) => setItemQuantity(event.target.value)}
-        ></input>
-        <br />
+        <div           style={{ fontFamily: "roboto, sans-serif" }}
+> IMAGE:</div>
         <input
           id="propertyUploadImages"
           name="uploadimages"
@@ -90,14 +97,17 @@ function FormCreateItem() {
           value={image}
           onChange={(e) => setImage(e.target.value)}
         />
-        <br />
-        <button class="my-button-create">
-          <strong>CREATE</strong>
-        </button>
-        
-      </form>
-      </div>
-     );
+      <br />
+      <Button
+        variant="dark"
+        style={{ fontFamily: "roboto, sans-serif" }}
+        id="itemSubmit"
+        type="submit"
+      >
+        Submit
+      </Button>
+      
+    </Form>
+   );
 }
-
 export default FormCreateItem;
