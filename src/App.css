@@ -38,14 +38,20 @@
 }
 
 #cartSearch {
+  
   display: inline-block;
+  
+  
+
 }
 #cartCreate {
+  
   display: inline-block;
-  padding: 20px;
-  margin: 50px;
+  padding:20px;
+  margin:50px;
   /* border:solid; 
   borderColor:   black; */
+
 }
 .homeimage {
   /* background: url("../src/pictures/homeLogo.jpg"); */
@@ -53,8 +59,9 @@
   background-repeat: no-repeat;
   height: 1vh;
   background-position: left;
+
 }
-body {
+body{
   background: url("../src/pictures/homeBackgroundcopy.jpg");
   background-size: contain;
   height: 112vh;
@@ -62,12 +69,12 @@ body {
   background-position: right;
 }
 .numberCircle {
-  border-radius: 50%;
+  border-radius: 50%; 
   width: 30px;
   height: 30px;
-  padding: 4px;
+   padding: 4px; 
 
-  background: red;
+  background:red;
   /* border:2px solid #666; */
   color: #666;
   color: white;

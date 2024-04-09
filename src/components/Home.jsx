@@ -1,8 +1,10 @@
+import homeLogo from "../pictures/homeLogo.jpg";
 import 'bootstrap/dist/css/bootstrap.css';
 import lowPrice from "../pictures/lowprice.png";
 import onLine from "../pictures/online.png";
 import priceMatch from "../pictures/priceMatch.jpg";
 import basket from "../pictures/basket.jpg";
+import homeBackground from "../pictures/homeBackground.jpg";
 function Home() {
     return (
         <div className="homeClass" style={{width:"100%"}}>
@@ -10,7 +12,7 @@ function Home() {
 
 
 
-                <p>CCZone Homepage</p>
+                {/* <p>CCZone Homepage</p> */}
                 
                 <div >
                     

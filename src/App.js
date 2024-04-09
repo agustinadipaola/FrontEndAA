@@ -1,131 +1,182 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./components/Home";
-import Cart from "./components/Cart";
+import UserHome from "./components/user/UserHome";
 import AddItemToCart from "./components/cart/AddItemToCart";
-import AddItem from "./components/item/AddItem";
+import CreateItem from "./components/admin/CreateItem";
 import DisplayCartContent from "./components/cart/DisplayCartContent";
 import UpdateCartItem from "./components/item/UpdateCartItem";
-import BuyerCart from "./components/cart/BuyerCart";
 import DisplayStockItems from "./components/item/DisplayStockItems";
-import homeLogo from "./pictures/homeLogo.jpg";
-import "bootstrap/dist/css/bootstrap.min.css";
 import LogIn from "./components/login/LogIn";
-import PrivateRoute from "./components/privateRoute/PrivateRoute";
-import WelcomeDashboard from "./components/login/Dashboard";
 import SignupForm from "./components/login/SignUpForm";
+import SignUpDashboard from "./components/login/SignUpDashboard";
+import UserItems from "./components/item/UserItems";
+import AdminHome from "./components/admin/AdminHome";
+import Checkout from "./components/user/Checkout";
+import SaveForLater from "./components/user/SaveForLater";
+import { Link } from "react-router-dom";
+import homeLogo from "./pictures/homeLogo.png"
+import { Navbar, Container, Button } from "react-bootstrap";
+import { FaShoppingCart } from "react-icons/fa";
+import { MdAdminPanelSettings } from "react-icons/md";
+
+const USER_TYPES = {
+  PUBLIC: "",
+  NORMAL_USER: "",
+  ADMIN_USER: (
+    <div>
+      {" "}
+      <MdAdminPanelSettings size={30} />
+    </div>
+  ),
+};
+const CURRENT_USER_TYPE = USER_TYPES.NORMAL_USER;
+// const CURRENT_USER_TYPE = USER_TYPES.ADMIN_USER;
 
 function App() {
-  // const reqBody = {
-  //   username: "",
-  //   password: "password"
-  // };
-
-  // fetch("api/auth/login",{
-  //   headers:{
-  //     "content-type": "application/json"
-  //   },
-  //   method: "post",
-  //   body: JSON.stringify(reqBody)
-  // }).then(response => console.log(response));
   return (
-    <body>
-      <div>
-        <BrowserRouter>
-          {/* <nav className="navbar align-content-center " style={{ display: "flex", backgroundColor: "#526899", }}> */}
-
-          <nav
-            className="navbar align-content-center "
-            style={{ display: "flex", backgroundColor: "  #00450a" }}
-          >
-            <div>
-              <div className="homeimage"></div>
+    <BrowserRouter>
+      <Navbar bg="light" data-bs-theme="light">
+        <Container>
+          {CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER ? (
+            <a className="navbar-brand" href="/AdminHome">
               <img
-                class="text-center"
-                alt="logo"
-                style={{ width: "10%" }}
+                className="navbar-brand"
+                href="/AdminHome"
+                alt="Big Cart Saver Logo"
+                style={{ width: "15%" }}
                 src={homeLogo}
               ></img>
-              <Link to="/">
-                <button
-                  type="button"
-                  className="btn btn-success"
-                  style={{ margin: "10px", color: "#fdc1da" }}
-                >
-                  <strong>Home</strong>
-                </button>
-              </Link>
-              <Link to="/cart">
-                <button
-                  type="button"
-                  className="btn btn-success"
-                  style={{ margin: "10px", color: "#fdc1da" }}
-                >
-                  <strong>Cart</strong>
-                </button>
-              </Link>
-              <Link to="/item">
-                <button
-                  type="button"
-                  className="btn btn-success"
-                  style={{ margin: "10px", color: "#fdc1da" }}
-                >
-                  <strong>Item</strong>
-                </button>{" "}
-              </Link>
-              <Link to="/shopping">
-                <button
-                  type="button"
-                  className="btn btn-success"
-                  style={{ margin: "10px", color: "#fdc1da" }}
-                >
-                  <strong>Shopping</strong>
-                </button>{" "}
-              </Link>
-              <p
-                style={{
-                  float: "inline-end",
-                  textAlign: "end",
-                  fontFamily: "cursive",
-                  color: "#fdc1da",
-                }}
+            </a>
+          ) : null}
+          {CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER ? (
+            <a className="navbar-brand" href="/UserHome">
+              <img
+                className="navbar-brand"
+                href="/UserHome"
+                alt="Big Cart Saver Logo"
+                style={{ width: "15%" }}
+                src={homeLogo}
+              ></img>
+            </a>
+          ) : null}
+          {CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER ? (
+            <>
+              <Link to="/item" className="roboto">
+                <Button variant="light">
+                  <strong>CREATE ITEM</strong>
+                </Button>
+              </Link>{" "}
+            </>
+          ) : null}
+          {CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER ? (
+            <>
+              <Link to="/UserItems" className="roboto">
+                <Button variant="light">
+                  <strong>ITEMS</strong>
+                </Button>
+              </Link>{" "}
+            </>
+          ) : null}
+
+          {CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER ? (
+            <>
+              <Link to="/login" className="roboto">
+                <Button variant="dark">
+                  <strong>LOG IN</strong>
+                </Button>
+              </Link>{" "}
+            </>
+          ) : null}
+          {CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER ? (
+            <>
+              <Link
+                className="nav-link icon-cart"
+                to="/shopping"
+                style={{ color: "black" }}
               >
-                <b>Here to help with the cost of living!</b>
-              </p>
-              {/* <img class="text-center" style={{ width: "20%", marginLeft: "600px" }} src={homeLogo}></img> */}
-            </div>
-          </nav>
+                <Button variant="light">
+                  <FaShoppingCart size={30} />
+                  <span>
+                    <strong> 0 </strong>
+                  </span>
+                </Button>
+              </Link>{" "}
+            </>
+          ) : null}
 
-          <div style={{ /* backgroundColor: "#5dbc4d",*/ width: "100%" }}>
-            {/* <img class="text-center" style={{ width: "20%", marginLeft: "600px" }} src={homeLogo}></img> */}
+          <div>
+            <strong>{CURRENT_USER_TYPE}</strong>{" "}
           </div>
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              }
-            />
-
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/item/:id" element={<AddItemToCart />} />
-            <Route path="/item" element={<AddItem />} />
-
-            <Route path="/cart/get/:id" element={<DisplayCartContent />} />
-            <Route path="/item/update/:id" element={<UpdateCartItem />} />
-            <Route path="/shopping" element={<BuyerCart />} />
-
-            <Route path="/item" element={<DisplayStockItems />} />
-            <Route path="/login" element={<LogIn />} />
-            <Route path='/signup' element={<SignupForm />} />
-            <Route path='/dashboard' element={<WelcomeDashboard />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </body>
+        </Container>
+      </Navbar>
+      <Routes>
+        <Route path="/" element={<UserHome />} />
+        <Route path="/item/:id" element={<AddItemToCart />} />
+        <Route path="/item" element={            <AdminElement>
+<CreateItem />            </AdminElement>
+} />
+        <Route path="/cart/get/:id" element={<DisplayCartContent />} />
+        <Route path="/item/update/:id" element={<UpdateCartItem />} />
+        <Route path="/shopping" element={            <UserElement>
+<DisplayCartContent />            </UserElement>
+} />
+        <Route path="/item" element={<DisplayStockItems />} />
+        <Route path="/login" element={<LogIn />} />
+        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/welcomesignup" element={<SignUpDashboard />} />
+        <Route
+          path="/UserHome"
+          element={
+            <UserElement>
+              <UserHome />
+            </UserElement>
+          }
+        />
+        <Route
+          path="/UserItems"
+          element={
+            <UserElement>
+              <UserItems />
+            </UserElement>
+          }
+        />
+        <Route
+          path="/AdminHome"
+          element={
+            <AdminElement>
+              <AdminHome />
+            </AdminElement>
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <UserElement>
+              <Checkout />
+            </UserElement>
+          }
+        />
+                <Route path="/save-for-later" element={<SaveForLater />} />
+      </Routes>
+    </BrowserRouter>
   );
+  function PublicElement({ children }) {
+    return <>{children}</>;
+  }
+  function AdminElement({ children }) {
+    if (CURRENT_USER_TYPE === USER_TYPES.ADMIN_USER) {
+      return <>{children}</>;
+    } else {
+      return <h3> You do not have access to this page</h3>;
+    }
+  }
+  function UserElement({ children }) {
+    if (CURRENT_USER_TYPE === USER_TYPES.NORMAL_USER) {
+      return <>{children}</>;
+    } else {
+      return <h3> You do not have access to this page</h3>;
+    }
+  }
 }
 
 export default App;
